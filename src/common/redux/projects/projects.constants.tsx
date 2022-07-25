@@ -1,0 +1,7 @@
+export enum ProjectConstants {
+    NEW_PROJECT = "NEW_PROJECT",
+    GET_PROJECTS = "GET_PROJECTS",
+    DELETE_PROJECT = "DELETE_PROJECT",
+    UPDATE_PROJECT = "UPDATE_PROJECT",
+    ERROR = "ERROR"
+}

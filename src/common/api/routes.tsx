@@ -1,3 +1,5 @@
 export const apiRoutes: any = {
-  login: `auth/login.json`,
+  login: `auth/login`,
+  register: `auth/register`,
+  projects: `projects`
 };

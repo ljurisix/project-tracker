@@ -20,20 +20,18 @@ function AuthRouter() {
   const { path } = useRouteMatch();
 
   if (userAuth && userAuth.isAuthenticated) {
-    return <Redirect to={AppRoutes.DASHBOARD.fullPath} />;
+    return <Redirect to={AppRoutes.PROJECTS.fullPath} />;
   }
 
   let routes = [
     {
       path: AuthRoutes.LOGIN.path,
       component: LoginPageComponent,
-      roles: [],
       exact: true,
     },
     {
       path: AuthRoutes.REGISTER.path,
       component: RegisterPageComponent,
-      roles: [],
       exact: true,
     },
   ];

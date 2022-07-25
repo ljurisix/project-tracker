@@ -17,7 +17,7 @@ function LoginPageComponent() {
 
   const onFinish = (values: any) => {
     let loginData: LoginInterface = {
-      emailOrNickname: values.username,
+      email: values.email,
       password: values.password,
     };
     dispatch(loginAction(loginData));

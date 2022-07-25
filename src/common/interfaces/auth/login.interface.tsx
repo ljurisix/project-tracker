@@ -1,11 +1,14 @@
+import { BaseResponseInterface } from '../base/base.interface';
 import { UserInterface } from '../user/user.interface';
 
 export interface LoginInterface {
-  emailOrNickname: string;
+  email: string;
   password: string;
 }
 
-export interface LoginResponseInterface {
-  accessToken: string;
-  user: UserInterface;
+export interface LoginResponseInterface extends BaseResponseInterface {
+  data: {
+      accessToken: string;
+      user: UserInterface;
+  }
 }

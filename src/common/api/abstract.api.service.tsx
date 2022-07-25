@@ -53,14 +53,20 @@ function GET(path: string, params?: HttpParamsTypes, showLoader?: boolean): Obse
  * @param {object}    params        Request query params
  */
 function POST(path: string, body: any, params?: HttpParamsTypes): Observable<any> {
+  const isFormData = (body instanceof FormData);
+  
   const requestOptions = {
     method: 'POST',
     headers: {
       ...httpHeader(),
       'Content-Type': 'application/json',
     },
-    body: JSON.stringify(body),
+    body: isFormData ? body : JSON.stringify(body),
   };
+
+  if (!isFormData) {
+    requestOptions.headers['Content-Type'] = 'application/json';
+  }
 
   let url = [process.env.REACT_APP_API_URL, path].join('/');
   url = getUrlWithParams(url, params);

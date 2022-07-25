@@ -19,30 +19,27 @@ function AppRouter() {
 
   let routes = [
     {
-      path: AppRoutes.DASHBOARD.path,
+      path: AppRoutes.PROJECTS.path,
       component: DashboardPageComponent,
-      roles: [UserRoleEnum.USER],
+      exact: true,
+    },
+    {
+      path: AppRoutes.PROJECTS.path + '/:id',
+      component: DashboardPageComponent,
       exact: true,
     },
   ];
-
-  const allowedRoutes = routes.filter((r) => {
-    if (r.roles.length === 0) return true;
-    if (!userAuth.isAuthenticated || !userAuth.user) return false;
-    if (r.roles.includes(userAuth.user.role)) return true;
-
-    return false;
-  });
 
   return (
     <Layout className="layout">
       <HeaderComponent></HeaderComponent>
       <ContentComponent className="content site-container mt32">
         <Switch>
-          {allowedRoutes.map((route, index) => (
+          {routes.map((route, index) => (
             <Route exact={route.exact} path={`${path}/${route.path}`} key={index}>
-              {' '}
-              <route.component />{' '}
+              {''}
+              <route.component />
+              {''}
             </Route>
           ))}
           <Route component={NotFoundPageComponent} />

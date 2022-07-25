@@ -12,20 +12,37 @@ export function loginAction(data: LoginInterface) {
   return (dispatch: Dispatch) => {
     return UserService.login(data).subscribe(
       (response: LoginResponseInterface) => {
+        if (response.success === false) {
+          dispatch({
+            type: AuthConstants.ERROR,
+            payload: response.errorCode,
+          });
+          notification['error']({
+            message: 'Incorrect login information!',
+            duration: 5,
+          });
+          return;
+        }
         dispatch({
           type: AuthConstants.LOGIN_SUCCESS,
           payload: response,
         });
-
-        notification['success']({ message: i18n.translate('login.msgs.login'), duration: 2 });
-
-        NavigationService.navigate(AppRoutes.DASHBOARD.fullPath);
+        notification['success']({
+          message: 'Successful login :)',
+          duration: 3,
+        });
+        NavigationService.navigate(AppRoutes.PROJECTS.fullPath);
       },
       (error: Error) => {
         dispatch({
           type: AuthConstants.ERROR,
           payload: error,
         });
+        notification['error']({
+          message: 'Incorrect login information!',
+          duration: 5,
+        });
+        console.log(error);
       }
     );
   };

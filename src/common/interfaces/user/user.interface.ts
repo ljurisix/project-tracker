@@ -1,10 +1,11 @@
 import { UserRoleEnum } from '../../enums';
 
 export interface UserInterface {
-  id?: number;
+  id?: string;
   email: string;
-  username: string;
-  name: string;
-  age: number;
-  role: UserRoleEnum;
+  password: string;
+}
+
+export interface CollaboratorInterface {
+  user_id: number;
 }

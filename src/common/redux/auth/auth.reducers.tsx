@@ -16,6 +16,7 @@ export interface AuthStateInterface {
 const initialState: AuthStateInterface = {
   lang: 'hr',
   isAuthenticated: false,
+  user: undefined
 };
 
 // ============ REDUCERS ============
@@ -24,8 +25,8 @@ const loginSuccess = (state: AuthStateInterface, payload: LoginResponseInterface
   return {
     ...state,
     isAuthenticated: true,
-    accessToken: payload.accessToken,
-    user: payload.user,
+    accessToken: payload.data.accessToken,
+    user: payload.data.user,
   };
 };
 
@@ -35,6 +36,12 @@ const logoutSuccess = (state: AuthStateInterface, payload: LoginResponseInterfac
     isAuthenticated: false,
     accessToken: undefined,
     user: undefined,
+  };
+};
+
+const registerSuccess = (state: AuthStateInterface) => {
+  return {
+    ...state,
   };
 };
 
