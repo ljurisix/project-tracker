@@ -1,0 +1,27 @@
+.ant-divider {
+  color: $border-color;
+  background: $border-color;
+  border-top-width: 1px !important;
+
+  &.ant-divider-horizontal {
+    margin: $pad * 5 0;
+
+    &.ant-divider-override-big {
+      margin: $pad * 10 0;
+    }
+  }
+
+  &.divider--no-bottom-margin {
+    margin-bottom: 0;
+  }
+
+  &.divider--margin-8 {
+    margin: $pad 0;
+  }
+
+  &.divider--full {
+    margin-left: -$pad * 3;
+    margin-right: -$pad * 3;
+    width: calc(100% + 48px);
+  }
+}

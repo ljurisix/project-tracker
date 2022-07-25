@@ -1,0 +1,9 @@
+@import 'media-blender';
+
+$media-breakpoints: (
+  small: 0 543,
+  mobile: 544 767,
+  tablet: 768 991,
+  desktop: 992 1199,
+  large: 1200,
+) !default;

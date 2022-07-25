@@ -1,0 +1,39 @@
+%site-container {
+  @extend %site-padding;
+  max-width: $base-content-width;
+  margin: 0 auto;
+}
+
+%page-y-padding {
+  padding-top: $pad * 5;
+  padding-bottom: $pad * 5;
+  @include media(desktop up) {
+    padding-top: $pad * 10;
+    padding-bottom: $pad * 10;
+  }
+}
+
+%site-container-small {
+  @extend %site-padding;
+  max-width: $base-content-width-s;
+  margin: 0 auto;
+}
+
+%site-container-smaller {
+  @extend %site-padding;
+  max-width: $base-content-width-xs;
+  margin: 0 auto;
+}
+
+%site-container-panel {
+  @extend %site-padding;
+  max-width: $base-content-width-xs;
+  margin: $pad * 10 auto;
+  padding: $pad * 5 $pad * 5;
+  box-shadow: $panel-box-shadow;
+
+  @include media(desktop up) {
+    margin: $pad * 15 auto;
+    padding: $pad * 10 $pad * 10;
+  }
+}

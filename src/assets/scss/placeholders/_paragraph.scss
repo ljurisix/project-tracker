@@ -1,0 +1,18 @@
+/// Placeholder that is used to reset browser default styles for paragraph.
+///
+/// ### Output
+/// ```scss
+/// .test {
+///   padding: 0;
+///   margin: 0;
+/// }
+/// ```
+///
+/// .test {
+///   @extend %paragraph-reset;
+/// }
+
+%paragraph-reset {
+  padding: 0;
+  margin: 0;
+}

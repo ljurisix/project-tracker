@@ -1,0 +1,10 @@
+{
+  "accessToken": "fake-token",
+  "user": {
+    "email": "testo@testic.com",
+    "username": "test",
+    "name": "Testo Testic",
+    "age": 18,
+    "role": 2
+  }
+}

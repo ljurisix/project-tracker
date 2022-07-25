@@ -1,0 +1,36 @@
+{
+  "api": {
+    "errorCodes": {
+      "200": "OK"
+    }
+  },
+
+  "header": {
+    "title": "HEADER"
+  },
+
+  "footer": {
+    "title": "FOOTER"
+  },
+
+  "login": {
+    "form": {
+      "username": "Username",
+      "password": "Password",
+      "remember": "Remember me"
+    },
+    "btns": {
+      "login": "Login"
+    },
+    "msgs": {
+      "login": "You have successfully logged in",
+      "logout": "You have successfully logged out",
+      "requred": "Required input"
+    }
+  },
+
+  "dashboard": {
+    "title": "DASHBOARD EN",
+    "logoutBtn": "Log out"
+  }
+}

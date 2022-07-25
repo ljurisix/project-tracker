@@ -1,0 +1,36 @@
+{
+  "api": {
+    "errorCodes": {
+      "200": "OK"
+    }
+  },
+
+  "header": {
+    "title": "ZAGLAVLJE"
+  },
+
+  "footer": {
+    "title": "PODNOŽJE"
+  },
+
+  "login": {
+    "form": {
+      "username": "Korisničko ime",
+      "password": "Lozinka",
+      "remember": "Zapamti me"
+    },
+    "btns": {
+      "login": "Prijava"
+    },
+    "msgs": {
+      "login": "Uspješna prijava",
+      "logout": "Uspješna odjava",
+      "requred": "Required input"
+    }
+  },
+
+  "dashboard": {
+    "title": "DASHBOARD HR",
+    "logoutBtn": "Odjava"
+  }
+}

@@ -1,0 +1,16 @@
+/// Placeholder that is used to add default transition to links.
+///
+/// ### Output
+/// ```scss
+/// .test {
+///   transition: color 0.2s ease-in;
+/// }
+/// ```
+///
+/// .test {
+///   @extend %link-transition;
+/// }
+
+%link-transition {
+  transition: color 0.2s ease-in;
+}

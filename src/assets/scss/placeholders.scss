@@ -1,0 +1,69 @@
+%list-reset {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+%link-reset {
+  margin: 0;
+  padding: 0;
+  color: unset;
+  text-decoration: none;
+
+  &:hover {
+    color: unset;
+  }
+}
+
+%absolute-center {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  margin: auto;
+}
+
+%clearfix {
+  &::after {
+    content: '';
+    display: table;
+    clear: both;
+  }
+}
+
+%dl-reset {
+  margin: 0;
+  padding: 0;
+}
+
+%heading-reset {
+  margin: 0;
+  padding: 0;
+}
+
+%input-reset {
+  padding: 0;
+  border: none;
+  appearance: none;
+}
+
+%link-transition {
+  transition: color 0.2s ease-in;
+}
+
+%paragraph-reset {
+  padding: 0;
+  margin: 0;
+}
+
+%visually-hidden {
+  border: 0;
+  clip: rect(0 0 0 0);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  width: 1px;
+}

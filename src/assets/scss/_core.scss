@@ -1,0 +1,38 @@
+// Define Base Columns Number.
+$base-col-number: 12 !default;
+
+// Define Base Gutter Size.
+$base-gutter-size: 25px !default;
+
+// Define Base Font Size.
+$base-font-size: 18px !default;
+
+// Define Base Font Family.
+$base-font-family: 'Open Sans', Arial, sans-serif !default;
+
+// Default Container Width.
+$base-container-size: 1330px !default;
+
+// Default header height - used for setting both header & logo sizes.
+$base-header-height: 50px;
+
+// use with global-settings(colors,primary) for example
+$global-variables: (
+  colors: (
+    primary: #daa14c,
+    black: #141414,
+    dark: #262626,
+    white: #fff,
+    grey: #acacac,
+    dark-grey: #747272,
+    light: #9f9f9f,
+    light-grey: #dbdbdb,
+  ),
+  containers: (
+    default: 1330px,
+  ),
+  gutters: (
+    default: 25px,
+    big: 50px,
+  ),
+);

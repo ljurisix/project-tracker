@@ -1,0 +1,12 @@
+.ant-drawer {
+  &.game-drawer {
+    .ant-drawer-title {
+      text-align: center;
+      font-weight: 700;
+    }
+
+    .ant-drawer-body {
+      padding-top: 0;
+    }
+  }
+}

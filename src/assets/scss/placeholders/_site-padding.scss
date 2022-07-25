@@ -1,0 +1,18 @@
+/// Placeholder that is used to add default padding on containers.
+///
+/// ### Output
+/// ```scss
+/// .test {
+///   padding-left: 25px;
+///   padding-right: 25px;
+/// }
+/// ```
+///
+/// .test {
+///   @extend %site-padding;
+/// }
+
+%site-padding {
+  padding-left: $pad * 5;
+  padding-right: $pad * 5;
+}

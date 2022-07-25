@@ -1,0 +1,27 @@
+@import './media.scss';
+
+// Vendors - node modules
+@import 'normalize-scss';
+@include normalize(); // stylelint-disable-line at-rule-empty-line-before
+@import './core.scss';
+@import './variables.scss';
+@import './placeholders.scss';
+
+// Functions all.
+@import './functions/index';
+
+// Placeholders all.
+@import './placeholders/index';
+
+// Mixins all.
+@import './mixins/index';
+
+// Import globals
+@import './global.scss';
+
+// Overrides
+@import './override/_index.scss';
+
+// Components
+@import '../../common/components/index.scss';
+@import '../../features/index.scss';

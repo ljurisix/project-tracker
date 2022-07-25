@@ -1,0 +1,148 @@
+/*------------------------------------*\
+    #COLORS
+\*------------------------------------*/
+$color-primary: #ca6027;
+$color-secondary: #262626;
+$color-tertiary: #434343;
+$color-quaternary: #e5e5e5;
+
+$highlight-color: red;
+$color-black: #000000;
+$color-white: #ffffff;
+$color-primary-dark: #002766;
+
+$color-gray-light: #acacac;
+$color-gray: $color-tertiary;
+$color-gray-dark: $color-secondary;
+
+$color-success: #6fcf97;
+$color-error: #e94c4d;
+$color-warning: #f2994a;
+
+$color-text: $color-white;
+$color-text-gray: $color-gray-light;
+
+$color-disabled: #6a6868;
+
+$color-footer: #f8f8f8;
+
+$color-message-block: #687b8b;
+
+$checkbox-hover-color: #f4f4f4;
+
+$border-color: #d9d9d9;
+
+/*------------------------------------*\
+    #TYPOGRAPHY
+\*------------------------------------*/
+/* rajdhani-regular - latin-ext */
+// prettier-ignore
+@font-face {
+  font-family: 'Rajdhani';
+  font-style: normal;
+  font-weight: 400;
+  src: url('../fonts/rajdhani-v10-latin-ext-regular.eot'); /* IE9 Compat Modes */
+  src: local(''),
+       url('../fonts/rajdhani-v10-latin-ext-regular.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+       url('../fonts/rajdhani-v10-latin-ext-regular.woff2') format('woff2'), /* Super Modern Browsers */
+       url('../fonts/rajdhani-v10-latin-ext-regular.woff') format('woff'), /* Modern Browsers */
+       url('../fonts/rajdhani-v10-latin-ext-regular.ttf') format('truetype'), /* Safari, Android, iOS */
+       url('../fonts/rajdhani-v10-latin-ext-regular.svg#Rajdhani') format('svg'); /* Legacy iOS */
+}
+
+/* rajdhani-700 - latin-ext */
+// prettier-ignore
+@font-face {
+  font-family: 'Rajdhani';
+  font-style: normal;
+  font-weight: 700;
+  src: url('../fonts/rajdhani-v10-latin-ext-700.eot'); /* IE9 Compat Modes */
+  src: local(''),
+       url('../fonts/rajdhani-v10-latin-ext-700.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+       url('../fonts/rajdhani-v10-latin-ext-700.woff2') format('woff2'), /* Super Modern Browsers */
+       url('../fonts/rajdhani-v10-latin-ext-700.woff') format('woff'), /* Modern Browsers */
+       url('../fonts/rajdhani-v10-latin-ext-700.ttf') format('truetype'), /* Safari, Android, iOS */
+       url('../fonts/rajdhani-v10-latin-ext-700.svg#Rajdhani') format('svg'); /* Legacy iOS */
+}
+
+$font-family: 'Rajdhani', sans-serif;
+$font-weight: 700;
+
+$font: $font-family;
+
+/**
+* Font-weight
+*/
+$light: 300;
+$normal: 400;
+$medium: 600;
+$bold: 800;
+$strong: 900;
+
+/**
+* Spacing Defaults
+*/
+$pad: 5px;
+
+/*------------------------------------*\
+    #BORDERS
+\*------------------------------------*/
+
+/**
+* Border Width
+*/
+$border-s: 1px;
+$border-m: 1.5px;
+$border-l: 2px;
+
+$border: $border-s solid $border-color;
+
+$border-radius: 4px;
+
+$box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.12);
+
+//Typography
+// prettier-ignore
+$typography-map-custom: (
+  mobile: (
+    giant:          40px,
+    huge:           32px,
+    biggest:        28px,
+    bigger:         24px,
+    big:            22px,
+    largest:        20px,
+    larger:         18px,
+    large:          16px,
+    default:        14px,
+    medium:         12px,
+    small:          11px,
+    smaller:        10px,
+    tiny:           9px
+  ),
+  desktop: (
+    giant:          48px,
+    huge:           40px,
+    biggest:        32px,
+    bigger:         28px,
+    big:            24px,
+    largest:        22px,
+    larger:         20px,
+    large:          18px,
+    default:        16px,
+    medium:         14px,
+    small:          12px,
+    smaller:        11px,
+    tiny:           10px
+  )
+);
+
+$base-content-full-width: 1330px;
+$base-content-width: $base-content-full-width + ($pad * 10);
+
+$base-content-full-width-s: 900px;
+$base-content-width-s: $base-content-full-width-s + ($pad * 10);
+
+$base-content-full-width-xs: 700px;
+$base-content-width-xs: $base-content-full-width-xs + ($pad * 10);
+
+$panel-box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.12);

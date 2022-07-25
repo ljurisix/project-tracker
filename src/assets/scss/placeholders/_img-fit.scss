@@ -1,0 +1,17 @@
+%img-fit {
+  height: auto;
+  width: 100%;
+  object-position: center;
+  object-fit: cover;
+  border: 0;
+  vertical-align: middle;
+}
+
+%img-fit-vertical {
+  height: 100%;
+  width: auto;
+  object-position: center;
+  object-fit: cover;
+  border: 0;
+  vertical-align: middle;
+}
