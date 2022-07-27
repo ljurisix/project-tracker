@@ -30,9 +30,11 @@
       "register": "Registracija"
     },
     "msgs": {
-      "login": "Uspješna prijava",
-      "logout": "Uspješna odjava",
-      "required": "Potrebno je ispuniti polje!"
+      "incorrect": "Netočni podaci prijave!",
+      "login": "Uspješna prijava! :)",
+      "logout": "Uspješna odjava.",
+      "required": "Potrebno je ispuniti polje!",
+      "registered": "Uspješna registracija! :)"
     }
   },
 
@@ -43,13 +45,29 @@
   },
 
   "project": {
-    
-    "cancel": "Odustani",
-    "cD": "Konceptualni dizajn",
-    "collaborators": "Sudionici",
-    "general": "Općenito",
-    "return": "Povratak na listu",
-    "submit": "Potvrdi",
-    "tD": "Tehnički dizajn"
+    "edit": {
+      "details": "Detalji novog projekta:",
+      "collabs": "Sudionici u projektu:",
+      "description": "Opis projekta:",
+      "editDetails": "Uredi detalje projekta:",
+      "name": "Ime projekta:"
+    },
+    "btns": {
+      "cancel": "Odustani",
+      "cancelText": "Ne",
+      "okText": "Da",
+      "submit": "Potvrdi"
+    },
+    "msgs": {
+      "cD": "Konceptualni dizajn",
+      "collaborators": "Sudionici",
+      "confirm": "Jeste li sigurni?",
+      "delete": "Izbriši projekt",
+      "deleteProj": "Želite li izbrisati projekt?",
+      "general": "Općenito",
+      "placeholder": "Enter text",
+      "return": "Povratak na listu",
+      "tD": "Tehnički dizajn"
+    }
   }
 }

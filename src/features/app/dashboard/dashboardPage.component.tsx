@@ -15,7 +15,7 @@ import ProjectCardComponent from './projectCard.component';
 function DashboardPageComponent() {
   const { Option } = Select;
 
-  const user = useSelector((state: StoreStateInterface) => state.auth.user);
+  const currentUser = useSelector((state: StoreStateInterface) => state.auth.user);
 
   const projectsRedux = useSelector((state: StoreStateInterface) => state.projects.projects);
 
@@ -56,19 +56,19 @@ function DashboardPageComponent() {
   }, [dispatch]);
 
   useEffect(() => {
-    setProjects(projects?.data.filter((p) => p.creator?.id === user?.id) as any);
+    setProjects(projects?.data.filter((p) => p.creator?.id === currentUser?.id) as any);
 
     const unsub = store.subscribe(() => {
-      setProjects(projects?.data.filter((p) => p.creator?.id === user?.id) as any);
+      setProjects(projects?.data.filter((p) => p.creator?.id === currentUser?.id) as any);
     });
 
     return unsub;
-  }, [user, projects]);
+  }, [currentUser, projects]);
 
   let projekti = projectsRedux?.map((el) => <ProjectCardComponent key={el.id} project={el}></ProjectCardComponent>);
 
   async function handleSubmission(name: string, user: number, description: string) {
-    let creator: CollaboratorInterface = { user_id: user };
+    let creator: CollaboratorInterface = { user_id: user, user: currentUser! };
 
     const collaborators: CollaboratorInterface[] = [];
 
@@ -88,7 +88,7 @@ function DashboardPageComponent() {
       <Drawer
         className="formDrawer"
         width={600}
-        title="New project details"
+        title={i18n.translate(`project.edit.details`)}
         placement="right"
         onClose={onClose}
         visible={visible}
@@ -101,9 +101,9 @@ function DashboardPageComponent() {
               .validateFields()
               .then(() => {
                 let name = form.getFieldValue('projectName');
-                let currentuser = +user?.id!;
+                let currentuser = +currentUser?.id!;
                 let description = form.getFieldValue('projectDescription');
-                console.log(user);
+                console.log(currentUser);
                 handleSubmission(name, currentuser, description);
                 form.resetFields();
                 setVisible(false);
@@ -113,22 +113,22 @@ function DashboardPageComponent() {
               });
           }}
         >
-          <Form.Item name="projectName" label="Project name:" rules={[{ required: true, message: i18n.translate(`login.msgs.required`) }]}>
+          <Form.Item name="projectName" label={i18n.translate(`project.edit.name`)} rules={[{ required: true, message: i18n.translate(`login.msgs.required`) }]}>
             <Input placeholder="Enter project name" />
           </Form.Item>
-          <Form.Item name={'projectDescription'}>
+          <Form.Item label={i18n.translate(`project.edit.details`)} name={'projectDescription'}>
             <TextArea rows={4}>
               <br />
               <br />
             </TextArea>
           </Form.Item>
 
-          <Form.Item {...tailLayout}>
+          <Form.Item className="btnRow">
             <Button type="primary" htmlType="submit">
-              {i18n.translate(`project.submit`)}
+              {i18n.translate(`project.btns.submit`)}
             </Button>
             <Button htmlType="button" onClick={onCancel}>
-              {i18n.translate(`project.cancel`)}
+              {i18n.translate(`project.btns.cancel`)}
             </Button>
           </Form.Item>
         </Form>

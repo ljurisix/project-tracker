@@ -4,6 +4,7 @@ import { LoginInterface, RegisterInterface, RegisterResponseInterface } from '..
 import { AuthConstants, loginAction } from '../auth';
 import { notification } from 'antd';
 import { UserConstants } from './users.constants';
+import { i18n } from '../../services';
 
 export function registerAction(data: RegisterInterface) {
   return (dispatch: Dispatch) => {
@@ -14,7 +15,7 @@ export function registerAction(data: RegisterInterface) {
           payload: response,
         });
         notification['success']({
-          message: 'Successfully registered! :)',
+          message: i18n.translate(`login.msgs.registered`),
           duration: 3,
         });
         let loginData: LoginInterface = {

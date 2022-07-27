@@ -8,4 +8,5 @@ export interface UserInterface {
 
 export interface CollaboratorInterface {
   user_id: number;
+  user: UserInterface;
 }

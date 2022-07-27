@@ -1,10 +1,10 @@
-import { Button, Drawer, Form, Input, Select } from 'antd';
+import { Button, Divider, Drawer, Form, Input, Modal, Select } from 'antd';
 import TextArea from 'antd/lib/input/TextArea';
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { i18n, NavigationService, ProjectInterface, store, StoreStateInterface } from '../../../common';
-import { editProject } from '../../../common/redux/projects/projects.actions';
+import { deleteProject, editProject } from '../../../common/redux/projects/projects.actions';
 import { AppRoutes } from '../_router/app.routes';
 import ProjectDividerComponent from './projectDivider.component';
 
@@ -13,6 +13,7 @@ function ProjectViewComponent() {
 
   const [project, setProject] = useState<ProjectInterface>();
   const [updateFlag, setUpdateFlag] = useState(false);
+  const [selectedOption, setSelectedOption] = useState('');
 
   const projects = useSelector((state: StoreStateInterface) => state.projects.projects);
 
@@ -34,11 +35,11 @@ function ProjectViewComponent() {
     setVisible(false);
   };
 
-  const { TextArea } = Input;
-
-  const tailLayout = {
-    wrapperCol: { offset: 8, span: 16 },
+  const onFinish = () => {
+    setVisible(false);
   };
+
+  const { TextArea } = Input;
 
   useEffect(() => {
     setProject(projects.find((p) => p.id == id));
@@ -66,36 +67,69 @@ function ProjectViewComponent() {
 
   let { id } = useParams<ParamTypes>();
 
-  let collaborators = project?.collaborators.map((c) => <p>{c.user_id}</p>);
+  let collaborators = project?.collaborators.map((c) => <p>{c.user.email}</p>);
 
   let defName = project?.name;
   let defValue = project?.description;
+  let defCol = project?.collaborators;
+  let defCD = project?.conceptual_design;
+  let defTD = project?.technical_design;
 
   function onChange() {
     defName = form.getFieldValue('projectName');
     defValue = form.getFieldValue('projectDescription');
+    defCol = form.getFieldValue('projectCollaborators');
+    defCD = form.getFieldValue('projectCD');
+    defTD = form.getFieldValue('projectTD');
   }
 
   function handleSubmission() {
     if (project != undefined) {
       project.name = defName!;
       project.description = defValue!;
+      defCol?.forEach((c) => project.collaborators.push(c));
+      project.conceptual_design = defCD;
+      project.technical_design = defTD;
+
       dispatch(editProject(project as any));
     }
   }
 
+  function handleDelete() {
+    Modal.confirm({
+      content: i18n.translate(`project.msgs.deleteProj`),
+      okText: i18n.translate(`project.btns.okText`),
+      cancelText: i18n.translate(`project.btns.cancelText`),
+      onOk: () => {
+        Modal.confirm({
+          content: i18n.translate(`project.msgs.confirm`),
+          okText: i18n.translate(`project.btns.okText`),
+          cancelText: i18n.translate(`project.btns.cancelText`),
+          onOk: () => {
+            dispatch(deleteProject(id));
+            back();
+          },
+        });
+      },
+    });
+  }
+
   // xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 
-  console.log(`${project?.conceptual_design}`);
+  console.log(defName);
+  console.log(defValue);
+  console.log(defCol);
+  console.log(defCD);
+  console.log(defTD);
 
   // xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 
   return (
     <div>
       <Drawer
-        className="formDrawer"
+        className="generalFormDrawer"
         width={600}
-        title="Edit project details"
+        title={i18n.translate(`project.edit.editDetails`)}
         placement="right"
         onClose={onClose}
         visible={visible}
@@ -108,8 +142,7 @@ function ProjectViewComponent() {
               .validateFields()
               .then(() => {
                 handleSubmission();
-                form.resetFields();
-                setVisible(false);
+                onFinish();
               })
               .catch((info) => {
                 console.log(info);
@@ -118,94 +151,140 @@ function ProjectViewComponent() {
         >
           <Form.Item
             name="projectName"
-            label="Project name:"
-            rules={[{ required: true, message: i18n.translate(`login.msgs.required`) }]}
+            label={i18n.translate(`project.edit.name`)}
+            style={selectedOption !== 'general' ? { display: 'none' } : { display: 'block' }}
           >
-            <Input defaultValue={defName} placeholder="Enter project name" />
+            <Input defaultValue={defName} placeholder={i18n.translate(`project.msgs.placeholder`)} />
           </Form.Item>
-          <Form.Item name={'projectDescription'} label="Project description:">
+          <Form.Item
+            name={'projectDescription'}
+            label={i18n.translate(`project.edit.description`)}
+            style={selectedOption !== 'general' ? { display: 'none' } : {}}
+          >
             <TextArea rows={4} defaultValue={defValue} onChange={onChange}>
               <br />
               <br />
             </TextArea>
           </Form.Item>
 
-          <Form.Item {...tailLayout}>
+          <Form.Item
+            name={'projectCollaborators'}
+            label={i18n.translate(`project.edit.collabs`)}
+            style={selectedOption !== 'collaborators' ? { display: 'none' } : { display: 'block' }}
+          >
+            {defCol?.map((c) => (
+              <TextArea rows={4} defaultValue={`${c.user_id}`} onChange={onChange}>
+                <br />
+                <br />
+              </TextArea>
+            ))}
+          </Form.Item>
+
+          <Form.Item
+            name={'projectCD'}
+            label={i18n.translate(`project.msgs.cD`) + ":"}
+            style={selectedOption !== 'cD' ? { display: 'none' } : { display: 'block' }}
+          >
+            <TextArea rows={4} defaultValue={`${defCD}`} onChange={onChange}>
+              <br />
+              <br />
+            </TextArea>
+          </Form.Item>
+
+          <Form.Item
+            name={'projectTD'}
+            label={i18n.translate(`project.msgs.tD`) + ":"}
+            style={selectedOption !== 'tD' ? { display: 'none' } : { display: 'block' }}
+          >
+            <TextArea rows={4} defaultValue={`${defTD}`} onChange={onChange}>
+              <br />
+              <br />
+            </TextArea>
+          </Form.Item>
+
+          <Form.Item className="btnRow">
             <Button type="primary" htmlType="submit">
-              {i18n.translate(`project.submit`)}
+              {i18n.translate(`project.btns.submit`)}
             </Button>
+
             <Button htmlType="button" onClick={onCancel}>
-              {i18n.translate(`project.cancel`)}
+              {i18n.translate(`project.btns.cancel`)}
             </Button>
           </Form.Item>
         </Form>
       </Drawer>
 
       <div className="general">
-        <div className="edit">
-          <h3>{i18n.translate(`project.general`)}</h3>
+        <Divider className="divider" orientation="left">
+          {i18n.translate(`project.msgs.general`)}
           <Button
             type="text"
             onClick={() => {
+              setSelectedOption('general');
               showDrawer();
             }}
           >
             <i className="fa-solid fa-pen-to-square"></i>
           </Button>
-          <div className="divider"></div>
-        </div>
+        </Divider>
 
-        <p>{project?.name}</p>
+        <strong>{project?.name}</strong>
         <p>{project?.description}</p>
 
-        <div className="edit">
-          <h3>{i18n.translate(`project.collaborators`)}</h3>
+        <Divider className="divider" orientation="left">
+          {i18n.translate(`project.msgs.collaborators`)}
           <Button
             type="text"
             onClick={() => {
+              setSelectedOption('collaborators');
               showDrawer();
             }}
           >
             <i className="fa-solid fa-pen-to-square"></i>
           </Button>
-          <div className="divider"></div>
-        </div>
+        </Divider>
 
         {collaborators}
 
-        <div className="edit">
-          <h3>{i18n.translate(`project.cD`)}</h3>
+        <Divider className="divider" orientation="left">
+          {i18n.translate(`project.msgs.cD`)}
           <Button
             type="text"
             onClick={() => {
+              setSelectedOption('cD');
               showDrawer();
             }}
           >
             <i className="fa-solid fa-pen-to-square"></i>
           </Button>
-          <div className="divider"></div>
-        </div>
+        </Divider>
 
         <p>{`${project?.conceptual_design}`}</p>
 
-        <div className="edit">
-          <h3>{i18n.translate(`project.tD`)}</h3>
+        <Divider className="divider" orientation="left">
+          {i18n.translate(`project.msgs.tD`)}
           <Button
             type="text"
             onClick={() => {
+              setSelectedOption('tD');
               showDrawer();
             }}
           >
             <i className="fa-solid fa-pen-to-square"></i>
           </Button>
-          <div className="divider"></div>
-        </div>
+        </Divider>
 
         <p>{`${project?.technical_design}`}</p>
       </div>
-      <Button type="primary" onClick={back}>
-        {i18n.translate(`project.return`)}
-      </Button>
+
+      <div className="btnRow2">
+        <Button type="primary" onClick={back}>
+          {i18n.translate(`project.btns.return`)}
+        </Button>
+        <Button type="dashed" onClick={handleDelete}>
+          {i18n.translate(`project.btns.delete`)}
+        </Button>
+      </div>
     </div>
   );
 }

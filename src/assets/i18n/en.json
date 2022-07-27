@@ -30,9 +30,11 @@
       "register": "Register"
     },
     "msgs": {
-      "login": "You have successfully logged in",
-      "logout": "You have successfully logged out",
-      "required": "Required input!"
+      "incorrect": "Incorrect login info!",
+      "login": "Successfully logged in! :)",
+      "logout": "Successfully logged out!",
+      "required": "Required input!",
+      "registered": "Successfuly registered! :)"
     }
   },
 
@@ -43,13 +45,29 @@
   },
 
   "project": {
-    
-    "cancel": "Cancel",
-    "cD": "Concept design",
-    "collaborators": "Collaborators",
-    "general": "General info",
-    "return": "Return to dashboard",
-    "submit": "Submit",
-    "tD": "Technical design"
+    "edit": {
+      "details": "New project details:",
+      "collabs": "Project collaborators:",
+      "description": "Project description:",
+      "editDetails": "Edit project details:",
+      "name": "Project name:"
+    },
+    "btns": {
+      "cancel": "Cancel",
+      "cancelText": "No",
+      "delete": "Delete project",
+      "okText": "Yes",
+      "return": "Return to dashboard",
+      "submit": "Submit"
+    },
+    "msgs": {
+      "cD": "Concept design",
+      "collaborators": "Collaborators",
+      "confirm": "Are you sure?",
+      "deleteProj": "Do you want to delete this project?",
+      "general": "General info",
+      "placeholder": "Enter text",
+      "tD": "Technical design"
+    }
   }
 }

@@ -18,7 +18,7 @@ export function loginAction(data: LoginInterface) {
             payload: response.errorCode,
           });
           notification['error']({
-            message: 'Incorrect login information!',
+            message: i18n.translate(`login.msgs.incorrect`),
             duration: 5,
           });
           return;
@@ -28,7 +28,7 @@ export function loginAction(data: LoginInterface) {
           payload: response,
         });
         notification['success']({
-          message: 'Successful login :)',
+          message: i18n.translate(`login.msgs.login`),
           duration: 3,
         });
         NavigationService.navigate(AppRoutes.PROJECTS.fullPath);
@@ -39,7 +39,7 @@ export function loginAction(data: LoginInterface) {
           payload: error,
         });
         notification['error']({
-          message: 'Incorrect login information!',
+          message: i18n.translate(`login.msgs.incorrect`),
           duration: 5,
         });
         console.log(error);
