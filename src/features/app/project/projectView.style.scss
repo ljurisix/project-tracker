@@ -1,0 +1,26 @@
+.general {
+  width: 90%;
+  border: 1.5px solid rgb(198, 194, 190);
+  background-color: white;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  padding: 1% 2% 2% 2%;
+  margin-bottom: 2%;
+}
+
+.edit {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.edit h3 {
+  flex-grow: 0;
+}
+
+.divider {
+  flex-grow: 1;
+  height: 1px;
+  background-color: #9f9f9f;
+}

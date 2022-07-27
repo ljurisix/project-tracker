@@ -1,7 +1,8 @@
 import React from 'react';
 import { Form, Input, Button, Checkbox, Switch } from 'antd';
 import { useDispatch } from 'react-redux';
-import { i18n, loginAction, LoginInterface } from '../../../common';
+import { i18n, loginAction, LoginInterface, NavigationService } from '../../../common';
+import { AuthRoutes } from '../_router/auth.routes';
 
 function LoginPageComponent() {
   const dispatch = useDispatch();
@@ -17,7 +18,7 @@ function LoginPageComponent() {
 
   const onFinish = (values: any) => {
     let loginData: LoginInterface = {
-      email: values.email,
+      email: values.username,
       password: values.password,
     };
     dispatch(loginAction(loginData));
@@ -26,6 +27,10 @@ function LoginPageComponent() {
   const onFinishFailed = (errorInfo: any) => {
     console.log('Failed:', errorInfo);
   };
+
+  function goToRegister() {
+    NavigationService.navigate(AuthRoutes.REGISTER.fullPath);
+  }
 
   return (
     <Form
@@ -59,6 +64,9 @@ function LoginPageComponent() {
       <Form.Item {...tailLayout}>
         <Button type="primary" htmlType="submit">
           {i18n.translate(`login.btns.login`)}
+        </Button>
+        <Button type="link" onClick={goToRegister}>
+          {i18n.translate(`login.btns.gotoRegister`)}
         </Button>
       </Form.Item>
     </Form>

@@ -12,6 +12,7 @@ import {
   UserRoleEnum,
 } from '../../../common';
 import DashboardPageComponent from '../dashboard/dashboardPage.component';
+import ProjectViewComponent from '../project/projectView.component';
 
 function AppRouter() {
   const userAuth = useSelector((state: StoreStateInterface) => state.auth);
@@ -25,7 +26,7 @@ function AppRouter() {
     },
     {
       path: AppRoutes.PROJECTS.path + '/:id',
-      component: DashboardPageComponent,
+      component: ProjectViewComponent,
       exact: true,
     },
   ];

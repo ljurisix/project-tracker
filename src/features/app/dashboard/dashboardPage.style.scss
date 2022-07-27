@@ -1,2 +1,27 @@
-.dashboard {
+.item {
+    width: 70%;
+    border: 1.5px solid rgb(198, 194, 190);
+    background-color: white;
+    border-radius: 10px;
+    padding: 1% 1% 1% 1%;
+    margin-bottom: 2%;
+}
+
+.formDrawer {
+    width: 40%
+}
+
+.item:hover{
+    background-color: lightgray;
+}
+
+.name {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-direction: row;
+}
+
+.name h3 {
+    margin-bottom: 0;
 }

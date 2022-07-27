@@ -12,13 +12,11 @@ function MainRouter() {
     {
       path: ROOT_PATH_AUTH,
       component: AuthRouter,
-
       exact: false,
     },
     {
       path: ROOT_PATH_APP,
       component: AppRouter,
-
       exact: false,
     },
   ];

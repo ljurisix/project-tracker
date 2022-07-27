@@ -6,31 +6,50 @@
   },
 
   "header": {
-    "title": "ZAGLAVLJE"
+    "title": "Upravljanje projektima"
   },
 
   "footer": {
-    "title": "PODNOŽJE"
+    "title": "Powered by Bit4Bytes engine"
   },
 
   "login": {
     "form": {
+      "email": "Email",
       "username": "Korisničko ime",
       "password": "Lozinka",
+      "passConfirm": "Potvrdite lozinku",
+      "passFail": "Lozinke koje ste upisali nisu iste!",
       "remember": "Zapamti me"
     },
     "btns": {
-      "login": "Prijava"
+      "confirmPass": "Molimo potvrdite svoju lozinku!",
+      "gotoRegister": "Niste registrirani?",
+      "gotoLogin": "Već ste registrirani?",
+      "login": "Prijava",
+      "register": "Registracija"
     },
     "msgs": {
       "login": "Uspješna prijava",
       "logout": "Uspješna odjava",
-      "requred": "Required input"
+      "required": "Potrebno je ispuniti polje!"
     }
   },
 
   "dashboard": {
-    "title": "DASHBOARD HR",
-    "logoutBtn": "Odjava"
+    "logoutBtn": "Odjava",
+    "newProj": "+ Dodaj projekt",
+    "noProjects": "Nema projekata."
+  },
+
+  "project": {
+    
+    "cancel": "Odustani",
+    "cD": "Konceptualni dizajn",
+    "collaborators": "Sudionici",
+    "general": "Općenito",
+    "return": "Povratak na listu",
+    "submit": "Potvrdi",
+    "tD": "Tehnički dizajn"
   }
 }

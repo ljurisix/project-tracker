@@ -6,31 +6,50 @@
   },
 
   "header": {
-    "title": "HEADER"
+    "title": "Project tracker"
   },
 
   "footer": {
-    "title": "FOOTER"
+    "title": "Powered by Bit4Bytes engine"
   },
 
   "login": {
     "form": {
+      "email": "Email",
       "username": "Username",
       "password": "Password",
+      "passConfirm": "Confirm password",
+      "passFail": "The passwords you entered do not match!",
       "remember": "Remember me"
     },
     "btns": {
-      "login": "Login"
+      "confirmPass": "Please confirm your password!",
+      "gotoRegister": "Not registered?",
+      "gotoLogin": "Already registered?",
+      "login": "Login",
+      "register": "Register"
     },
     "msgs": {
       "login": "You have successfully logged in",
       "logout": "You have successfully logged out",
-      "requred": "Required input"
+      "required": "Required input!"
     }
   },
 
   "dashboard": {
-    "title": "DASHBOARD EN",
-    "logoutBtn": "Log out"
+    "logoutBtn": "Log out",
+    "newProj": "+ New project",
+    "noProjects": "No projects found."
+  },
+
+  "project": {
+    
+    "cancel": "Cancel",
+    "cD": "Concept design",
+    "collaborators": "Collaborators",
+    "general": "General info",
+    "return": "Return to dashboard",
+    "submit": "Submit",
+    "tD": "Technical design"
   }
 }
