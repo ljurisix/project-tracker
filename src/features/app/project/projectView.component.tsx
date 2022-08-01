@@ -1,12 +1,13 @@
 import { Button, Divider, Drawer, Form, Input, Modal, Select } from 'antd';
-import TextArea from 'antd/lib/input/TextArea';
+import { SizeType } from 'antd/lib/config-provider/SizeContext';
+import { formatTimeStr } from 'antd/lib/statistic/utils';
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { i18n, NavigationService, ProjectInterface, store, StoreStateInterface } from '../../../common';
 import { deleteProject, editProject } from '../../../common/redux/projects/projects.actions';
+import { getAllUsers } from '../../../common/redux/users/users.actions';
 import { AppRoutes } from '../_router/app.routes';
-import ProjectDividerComponent from './projectDivider.component';
 
 function ProjectViewComponent() {
   const { Option } = Select;
@@ -17,9 +18,13 @@ function ProjectViewComponent() {
 
   const projects = useSelector((state: StoreStateInterface) => state.projects.projects);
 
+  const users = useSelector((state: StoreStateInterface) => state.users.users);
+
   const dispatch = useDispatch();
 
   const [visible, setVisible] = useState(false);
+  const [size, setSize] = useState<SizeType>('middle');
+
   const [form] = Form.useForm();
 
   const showDrawer = () => {
@@ -40,6 +45,10 @@ function ProjectViewComponent() {
   };
 
   const { TextArea } = Input;
+
+  useEffect(() => {
+    dispatch(getAllUsers());
+  }, [dispatch]);
 
   useEffect(() => {
     setProject(projects.find((p) => p.id == id));
@@ -75,21 +84,19 @@ function ProjectViewComponent() {
   let defCD = project?.conceptual_design;
   let defTD = project?.technical_design;
 
-  function onChange() {
-    defName = form.getFieldValue('projectName');
-    defValue = form.getFieldValue('projectDescription');
-    defCol = form.getFieldValue('projectCollaborators');
-    defCD = form.getFieldValue('projectCD');
-    defTD = form.getFieldValue('projectTD');
-  }
+  const children: React.ReactNode[] = [];
+
+  users.forEach((u) => {
+    children.push(<Option key={u.id} value={`${u.id}`}>{u.email}</Option>);
+  })
 
   function handleSubmission() {
     if (project != undefined) {
-      project.name = defName!;
-      project.description = defValue!;
-      defCol?.forEach((c) => project.collaborators.push(c));
-      project.conceptual_design = defCD;
-      project.technical_design = defTD;
+      project.name = form.getFieldValue('projectName');
+      project.description = form.getFieldValue('projectDescription');
+      project.collaborators.push(JSON.parse(form.getFieldValue('projectCollaborators')))
+      project.conceptual_design = form.getFieldValue('projectCD');;
+      project.technical_design = form.getFieldValue('projectTD');
 
       dispatch(editProject(project as any));
     }
@@ -114,7 +121,14 @@ function ProjectViewComponent() {
     });
   }
 
+  const handleChange = (value: string | string[]) => {
+    console.log(`Selected: ${value}`);
+  };
+
   // xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+
+
+  console.log("COLLAB " + form.getFieldValue('projectCollaborators'));
 
   console.log(defName);
   console.log(defValue);
@@ -161,7 +175,7 @@ function ProjectViewComponent() {
             label={i18n.translate(`project.edit.description`)}
             style={selectedOption !== 'general' ? { display: 'none' } : {}}
           >
-            <TextArea rows={4} defaultValue={defValue} onChange={onChange}>
+            <TextArea rows={4} defaultValue={defValue}>
               <br />
               <br />
             </TextArea>
@@ -172,20 +186,23 @@ function ProjectViewComponent() {
             label={i18n.translate(`project.edit.collabs`)}
             style={selectedOption !== 'collaborators' ? { display: 'none' } : { display: 'block' }}
           >
-            {defCol?.map((c) => (
-              <TextArea rows={4} defaultValue={`${c.user_id}`} onChange={onChange}>
-                <br />
-                <br />
-              </TextArea>
-            ))}
+            <Select
+              mode="multiple"
+              size={size}
+              placeholder="Please select"
+              defaultValue={collaborators as any}
+              style={{ width: '100%' }}
+            >
+              {children}
+            </Select>
           </Form.Item>
 
           <Form.Item
             name={'projectCD'}
-            label={i18n.translate(`project.msgs.cD`) + ":"}
+            label={i18n.translate(`project.msgs.cD`) + ':'}
             style={selectedOption !== 'cD' ? { display: 'none' } : { display: 'block' }}
           >
-            <TextArea rows={4} defaultValue={`${defCD}`} onChange={onChange}>
+            <TextArea rows={4} defaultValue={`${defCD}`}>
               <br />
               <br />
             </TextArea>
@@ -193,10 +210,10 @@ function ProjectViewComponent() {
 
           <Form.Item
             name={'projectTD'}
-            label={i18n.translate(`project.msgs.tD`) + ":"}
+            label={i18n.translate(`project.msgs.tD`) + ':'}
             style={selectedOption !== 'tD' ? { display: 'none' } : { display: 'block' }}
           >
-            <TextArea rows={4} defaultValue={`${defTD}`} onChange={onChange}>
+            <TextArea rows={4} defaultValue={`${defTD}`}>
               <br />
               <br />
             </TextArea>

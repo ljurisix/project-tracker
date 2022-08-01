@@ -1,6 +1,6 @@
 import { Dispatch } from 'redux';
 import { UserService } from '../../api';
-import { LoginInterface, RegisterInterface, RegisterResponseInterface } from '../../interfaces';
+import { LoginInterface, RegisterInterface, RegisterResponseInterface, UserInterface, UsersResponseInterface } from '../../interfaces';
 import { AuthConstants, loginAction } from '../auth';
 import { notification } from 'antd';
 import { UserConstants } from './users.constants';
@@ -27,6 +27,26 @@ export function registerAction(data: RegisterInterface) {
       (error: Error) => {
         dispatch({
           type: AuthConstants.ERROR,
+          payload: error,
+        });
+        console.log(error);
+      }
+    );
+  };
+}
+
+export function getAllUsers() {
+  return (dispatch: Dispatch) => {
+    return UserService.getUsers().subscribe(
+      (response: UsersResponseInterface) => {
+        dispatch({
+          type: UserConstants.GET_USERS,
+          payload: response.data,
+        });
+      },
+      (error: Error) => {
+        dispatch({
+          type: UserConstants.ERROR,
           payload: error,
         });
         console.log(error);

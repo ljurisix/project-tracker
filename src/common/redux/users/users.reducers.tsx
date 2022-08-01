@@ -22,6 +22,13 @@ const registerSuccess = (state: UserStateInterface, payload: UserInterface) => {
   };
 };
 
+const getUsers = (state: UserStateInterface, payload: Array<UserInterface>): UserStateInterface => {
+  return {
+    ...state,
+    users: payload,
+  };
+};
+
 const error = (state: UserStateInterface, payload: string) => {
   return {
     ...state,
@@ -33,6 +40,8 @@ export const UsersReducer = (state = initialState, action: ReducerActionInterfac
   switch (action.type) {
     case UserConstants.REGISTER_SUCCESS:
       return registerSuccess(state, action.payload);
+    case UserConstants.GET_USERS:
+      return getUsers(state, action.payload);
     case UserConstants.ERROR:
       return error(state, action.payload);
     default:
